@@ -1,3 +1,4 @@
+// Cw 1
 function checkText(text) {
   for (let i = 0; i < text.length; i++) {
     let c = text[i];
@@ -30,5 +31,29 @@ function checkText(text) {
       else cont = "Numer telefonu jest poprawny";
     }
     contentNum.textContent = cont;
+  });
+
+  // Cw 2
+
+  const dragText = document.getElementById("ex3_element");
+  dragText.draggable = true;
+
+  const container = document.getElementById("ex3_two");
+
+  dragText.addEventListener("dragstart", function (event) {
+    event.dataTransfer.setData("text/plain", event.target.id);
+  });
+
+  container.addEventListener("dragover", function (event) {
+    event.preventDefault();
+  });
+
+  container.addEventListener("drop", function (event) {
+    event.preventDefault();
+
+    const eId = event.dataTransfer.getData("text/plain");
+    const draggedE = document.getElementById(eId);
+
+    container.appendChild(draggedE);
   });
 })();
