@@ -38,22 +38,27 @@ function checkText(text) {
   const dragText = document.getElementById("ex3_element");
   dragText.draggable = true;
 
-  const container = document.getElementById("ex3_two");
+  const containers = [
+    document.getElementById("ex3_one"),
+    document.getElementById("ex3_two"),
+  ];
 
   dragText.addEventListener("dragstart", function (event) {
     event.dataTransfer.setData("text/plain", event.target.id);
   });
 
-  container.addEventListener("dragover", function (event) {
-    event.preventDefault();
-  });
+  containers.forEach((container) => {
+    container.addEventListener("dragover", function (event) {
+      event.preventDefault();
+    });
 
-  container.addEventListener("drop", function (event) {
-    event.preventDefault();
+    container.addEventListener("drop", function (event) {
+      event.preventDefault();
 
-    const eId = event.dataTransfer.getData("text/plain");
-    const draggedE = document.getElementById(eId);
+      const eId = event.dataTransfer.getData("text/plain");
+      const draggedE = document.getElementById(eId);
 
-    container.appendChild(draggedE);
+      container.appendChild(draggedE);
+    });
   });
 })();
